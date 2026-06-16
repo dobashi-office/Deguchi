@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>経営者が誤解しやすい「年俸制」の話</title>
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --paper: #fffdf8;
+      --ink: #1f2a37;
+      --muted: #65758b;
+      --accent: #9a3412;
+      --accent-2: #0f766e;
+      --accent-3: #1d4ed8;
+      --line: #e7dfd2;
+      --danger: #b91c1c;
+      --danger-bg: #fff1f2;
+      --safe-bg: #ecfdf5;
+      --note-bg: #eff6ff;
+      --shadow: 0 22px 60px rgba(31, 42, 55, .10);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(154, 52, 18, .12), transparent 34rem),
+        radial-gradient(circle at 90% 10%, rgba(15, 118, 110, .10), transparent 28rem),
+        var(--bg);
+      line-height: 1.9;
+      letter-spacing: .02em;
+    }
+
+    a {
+      color: var(--accent-3);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(29, 78, 216, .35);
+    }
+
+    a:hover { border-bottom-color: var(--accent-3); }
+
+    .page {
+      width: min(1080px, calc(100% - 32px));
+      margin: 32px auto 64px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(255,253,248,.96), rgba(255,253,248,.82));
+      border: 1px solid rgba(231, 223, 210, .95);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto auto;
+      width: 260px;
+      height: 260px;
+      background: linear-gradient(135deg, rgba(154,52,18,.16), rgba(15,118,110,.08));
+      border-bottom-left-radius: 100%;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      padding: 58px 58px 48px;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(154, 52, 18, .09);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .label::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin: 22px 0 18px;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.18;
+      letter-spacing: .01em;
+    }
+
+    .lead {
+      max-width: 850px;
+      font-size: 19px;
+      color: #374151;
+      margin: 0;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 34px;
+    }
+
+    .summary-card {
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      min-height: 160px;
+    }
+
+    .summary-card strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .summary-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.75;
+    }
+
+    .section {
+      margin-top: 28px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 32px rgba(31, 42, 55, .06);
+      padding: 38px;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 30px;
+      line-height: 1.35;
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+    }
+
+    h2 .num {
+      color: var(--accent);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    h3 {
+      margin: 28px 0 10px;
+      font-size: 21px;
+      color: #111827;
+    }
+
+    p { margin: 0 0 16px; }
+
+    .big-message {
+      margin: 24px 0;
+      padding: 26px 28px;
+      border-radius: 20px;
+      background: #111827;
+      color: #fff;
+      font-size: 22px;
+      line-height: 1.65;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .big-message span {
+      color: #fde68a;
+    }
+
+    .alert {
+      border-radius: 18px;
+      padding: 20px 22px;
+      margin: 22px 0;
+      border: 1px solid rgba(185, 28, 28, .18);
+      background: var(--danger-bg);
+    }
+
+    .alert strong { color: var(--danger); }
+
+    .note {
+      border-radius: 18px;
+      padding: 20px 22px;
+      margin: 22px 0;
+      border: 1px solid rgba(29, 78, 216, .16);
+      background: var(--note-bg);
+    }
+
+    .safe {
+      border-radius: 18px;
+      padding: 20px 22px;
+      margin: 22px 0;
+      border: 1px solid rgba(15, 118, 110, .18);
+      background: var(--safe-bg);
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 24px 0;
+    }
+
+    .compare {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .compare .head {
+      padding: 16px 18px;
+      font-weight: 800;
+      color: #fff;
+      background: #374151;
+    }
+
+    .compare.bad .head { background: var(--danger); }
+    .compare.good .head { background: var(--accent-2); }
+
+    .compare .body {
+      padding: 18px;
+      color: #374151;
+      font-size: 15px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .checklist li {
+      position: relative;
+      padding: 14px 16px 14px 44px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 16px;
+      top: 12px;
+      color: var(--accent-2);
+      font-weight: 900;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      margin: 20px 0;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    th, td {
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #f3f4f6;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .source-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .source-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .source-item .tag {
+      flex: none;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(29,78,216,.10);
+      color: var(--accent-3);
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+
+    .closing {
+      margin-top: 28px;
+      padding: 34px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #1f2937, #111827);
+      color: #fff;
+    }
+
+    .closing h2 { color: #fff; }
+    .closing p { color: #e5e7eb; }
+
+    .office {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: right;
+    }
+
+    @media (max-width: 860px) {
+      .hero-inner, .section { padding: 28px; }
+      .summary-grid, .two-column { grid-template-columns: 1fr; }
+      h1 { font-size: 36px; }
+      h2 { font-size: 25px; }
+      .big-message { font-size: 19px; }
+      table, thead, tbody, th, td, tr { display: block; }
+      th { display: none; }
+      td { border-bottom: 1px solid var(--line); }
+      tr { border-bottom: 2px solid var(--line); }
+      tr:last-child { border-bottom: none; }
+      td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 12px;
+        font-weight: 800;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: auto; margin: 0; }
+      .hero, .section, .closing { box-shadow: none; break-inside: avoid; }
+      a { color: #111827; border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="hero">
+      <div class="hero-inner">
+        <div class="label">経営者向け労務コラム</div>
+        <h1>「年俸制にすれば残業代はいらない」<br>その理解は危険です。</h1>
+        <p class="lead">
+          年俸制は、賃金を年単位で決める制度です。プロ野球選手のような「年俸契約」を一般企業の従業員にそのまま当てはめることはできません。従業員である限り、労働基準法、最低賃金、割増賃金、労働条件変更のルールは残ります。
+        </p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <strong>誤解 1</strong>
+            <p>年俸制なら、何時間働いても年俸額だけでよい。</p>
+          </div>
+          <div class="summary-card">
+            <strong>誤解 2</strong>
+            <p>年俸に残業代込みと書けば、追加の残業代は不要。</p>
+          </div>
+          <div class="summary-card">
+            <strong>誤解 3</strong>
+            <p>成果が悪ければ、翌年の給与を自由に大幅減額できる。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <section class="section">
+      <h2><span class="num">01</span> 年俸制は「残業代を消す制度」ではありません</h2>
+      <p>
+        年俸制とは、賃金の決定単位を月ではなく年で考える制度です。たとえば「年俸600万円」と決め、それを12分割または賞与分を含めて支給するような設計が考えられます。
+      </p>
+      <p>
+        しかし、会社に雇用されている従業員である以上、年俸制を採用しても労働基準法の適用を受けます。実際の労働時間が法定労働時間を超えた場合には、原則として時間外割増賃金の支払いが必要です。
+      </p>
+
+      <div class="big-message">
+        年俸制とは、<span>賃金の決め方</span>の問題であって、<br>労働基準法を外す制度ではありません。
+      </div>
+
+      <div class="note">
+        <strong>参考：</strong>
+        厚生労働省の「確かめよう労働条件」でも、年俸制を導入した場合であっても、法定労働時間を超えれば原則として割増賃金を支払う必要があると説明されています。<br>
+        <a href="https://www.check-roudou.mhlw.go.jp/qa/roudousya/chingin/q4.html" target="_blank" rel="noopener">厚生労働省「年俸制の場合には、何時間残業しても割増賃金はもらえないのですか。」を確認する</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2><span class="num">02</span> 「年俸に残業代込み」も、書けばよいわけではありません</h2>
+      <p>
+        年俸の中に固定残業代を含める設計自体は、直ちに禁止されるものではありません。ただし、実務上は非常に注意が必要です。
+      </p>
+
+      <div class="two-column">
+        <div class="compare bad">
+          <div class="head">危険な書き方</div>
+          <div class="body">
+            年俸600万円には、時間外労働、休日労働、深夜労働に対する割増賃金をすべて含むものとする。
+          </div>
+        </div>
+        <div class="compare good">
+          <div class="head">必要な考え方</div>
+          <div class="body">
+            基本給部分、固定残業代部分、対応する時間数、超過した場合の追加支払いを明確に区分する。
+          </div>
+        </div>
+      </div>
+
+      <p>
+        「年俸に残業代込み」とする場合には、少なくとも次の点を明確にしておく必要があります。
+      </p>
+
+      <ul class="checklist">
+        <li>年俸のうち、通常の賃金部分はいくらか</li>
+        <li>年俸のうち、固定残業代部分はいくらか</li>
+        <li>固定残業代が何時間分の時間外労働に対応するのか</li>
+        <li>実際の割増賃金が固定残業代を超えた場合、差額を支払うのか</li>
+        <li>深夜労働・法定休日労働を含めるのか、別途支払うのか</li>
+      </ul>
+
+      <div class="alert">
+        <strong>実務上のリスク：</strong>
+        年俸額の中に割増賃金が含まれていると主張しても、通常賃金部分と割増賃金部分が明確に区分されていなければ、固定残業代として有効に扱われない可能性があります。その場合、年俸とは別に未払残業代を請求されるリスクがあります。
+      </div>
+
+      <div class="note">
+        <strong>参考：</strong>
+        厚生労働省の解説では、年俸制で年俸の中に割増賃金が含まれるとされていた事案について、割増賃金にあたる部分が明らかにされていなかった点が問題とされた最高裁判例が紹介されています。<br>
+        <a href="https://www.check-roudou.mhlw.go.jp/study/roudousya_jikangai.html" target="_blank" rel="noopener">厚生労働省「時間外・休日労働と割増賃金」を確認する</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2><span class="num">03</span> プロスポーツ選手の「年俸契約」とは前提が違います</h2>
+      <p>
+        経営者が年俸制を考えるとき、プロ野球選手やプロスポーツ選手の契約をイメージしていることがあります。
+      </p>
+      <p>
+        しかし、プロ野球選手、特に一軍選手については、一般に労働基準法上の労働者ではないと整理されています。報酬の決定方法、仕事の裁量、用具の調達、働く場所や時間の拘束性など、通常の会社員とは前提が異なるためです。
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>区分</th>
+            <th>プロスポーツ選手型</th>
+            <th>一般企業の従業員型</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="区分">法的な前提</td>
+            <td data-label="プロスポーツ選手型">労基法上の労働者ではないと整理される場合がある</td>
+            <td data-label="一般企業の従業員型">労基法上の労働者として扱われる</td>
+          </tr>
+          <tr>
+            <td data-label="区分">残業代</td>
+            <td data-label="プロスポーツ選手型">労基法37条の割増賃金の問題とは別枠で整理される</td>
+            <td data-label="一般企業の従業員型">法定労働時間を超えれば原則として割増賃金が必要</td>
+          </tr>
+          <tr>
+            <td data-label="区分">年俸の見直し</td>
+            <td data-label="プロスポーツ選手型">契約更新時に大きく変動することがある</td>
+            <td data-label="一般企業の従業員型">労働条件変更、賃金規程、評価制度、本人説明・合意の問題がある</td>
+          </tr>
+          <tr>
+            <td data-label="区分">社会保険</td>
+            <td data-label="プロスポーツ選手型">会社員型とは異なる制度・補完制度で整理されることがある</td>
+            <td data-label="一般企業の従業員型">適用事業所に使用され、報酬を受ける場合は原則として健康保険・厚生年金の対象</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        <strong>参考：</strong>
+        労働政策研究・研修機構の論考では、プロ野球の一軍選手について、労基法上の労働者ではなく、最低賃金法や労災保険法などの適用もないと説明されています。一方で、労働組合法上の労働者性は別に論じられるため、ここを混同しないことが重要です。<br>
+        <a href="https://www.jil.go.jp/institute/zassi/backnumber/2005/04/pdf/020-022.pdf" target="_blank" rel="noopener">JILPT「プロスポーツ選手の労働者性」を確認する</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2><span class="num">04</span> 成果に応じて翌年の年俸を決めること自体は可能です</h2>
+      <p>
+        不動産営業、保険営業、専門職、管理職候補などについて、今年の業績・成果・評価をもとに翌年の年俸を決定する制度を設けること自体は可能です。
+      </p>
+      <p>
+        ただし、それはあくまで「労働者に対する賃金制度・評価制度」として設計する必要があります。プロスポーツ選手の契約更改のように、会社が自由に年俸を増減できるわけではありません。
+      </p>
+
+      <div class="safe">
+        <strong>認められやすい方向性：</strong><br>
+        評価期間、評価項目、翌年度年俸への反映方法、最低保証額、固定残業代の扱い、超過分の精算方法を、就業規則・賃金規程・雇用契約書で明確にしておくことです。
+      </div>
+
+      <div class="alert">
+        <strong>危険な方向性：</strong><br>
+        「今年の成果が悪かったので、来年から一方的に年俸を大幅に下げる」「年俸制だから残業代は支払わない」「固定残業代の内訳を示さず、全部込みとする」といった設計は、未払賃金・不利益変更・最低賃金違反のリスクがあります。
+      </div>
+
+      <div class="note">
+        <strong>参考：</strong>
+        労働条件の変更について、厚生労働省の資料では、就業規則の変更により労働条件を変更する場合、原則として労働者の不利益に変更することはできず、変更後の就業規則の周知や合理性が問題になると説明されています。<br>
+        <a href="https://www.mhlw.go.jp/bunya/roudoukijun/roudoukeiyaku01/dl/08.pdf" target="_blank" rel="noopener">厚生労働省「労働契約法のポイント」を確認する</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2><span class="num">05</span> 社会保険も「年俸制だから別扱い」にはなりません</h2>
+      <p>
+        一般企業の従業員であれば、年俸制であっても、会社に使用され、労務の対償として給与・賃金を受けている以上、健康保険・厚生年金保険の適用関係は通常どおり検討されます。
+      </p>
+      <p>
+        「年俸契約だから個人事業主扱い」「年俸制だから社会保険に入れなくてよい」といった整理はできません。名称ではなく、実態として使用関係があるかどうかが重要です。
+      </p>
+
+      <div class="note">
+        <strong>参考：</strong>
+        日本年金機構は、適用事業所に常用的に使用される70歳未満の方は、国籍や性別、年金受給の有無にかかわらず厚生年金保険の被保険者となると説明しています。また、使用関係は雇用契約書の有無にかかわらず、労務の対償として給与や賃金を受ける関係をいうとされています。<br>
+        <a href="https://www.nenkin.go.jp/service/kounen/tekiyo/jigyosho/20150518.html" target="_blank" rel="noopener">日本年金機構「適用事業所と被保険者」を確認する</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2><span class="num">06</span> 年俸制を導入するなら、最低限ここを設計してください</h2>
+      <p>
+        年俸制そのものが悪いわけではありません。問題は、年俸制を「残業代を払わないための制度」「成果が悪い人の給与を自由に下げる制度」と誤解して導入することです。
+      </p>
+
+      <ul class="checklist">
+        <li>対象者を明確にする。全従業員なのか、特定職種・管理職候補なのかを分ける。</li>
+        <li>年俸額の決定方法を明確にする。評価項目、評価期間、決定時期を定める。</li>
+        <li>支給方法を明確にする。12分割なのか、賞与相当分を含めるのかを定める。</li>
+        <li>固定残業代を含める場合は、通常賃金部分と固定残業代部分を明確に区分する。</li>
+        <li>固定残業代に対応する時間数と、超過時の追加支払いを明記する。</li>
+        <li>深夜労働・法定休日労働を固定残業代に含めるのか、別途支給するのかを整理する。</li>
+        <li>年度途中の減額・変更の可否を慎重に整理する。</li>
+        <li>最低賃金を下回らないか、月ごとに確認できる設計にする。</li>
+        <li>就業規則、賃金規程、雇用契約書の整合性を取る。</li>
+      </ul>
+    </section>
+
+    <section class="closing">
+      <h2>まとめ</h2>
+      <p>
+        年俸制は、優秀な人材の処遇、営業職・専門職の評価反映、管理職層の報酬設計などに活用できる制度です。
+      </p>
+      <p>
+        しかし、従業員に導入する以上、プロスポーツ選手のような「契約更改型の年俸契約」と同じ感覚で運用することはできません。
+      </p>
+      <p>
+        「年俸制にすれば残業代はいらない」「今年はこの金額だけでよい」「成果が悪ければ自由に下げられる」という理解は、労務トラブルの入口です。
+      </p>
+      <p>
+        年俸制を導入する場合は、制度の目的、対象者、評価方法、固定残業代の扱い、超過分の精算、翌年度年俸の決定手続きまで、事前に設計してから導入する必要があります。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2><span class="num">参考リンク</span></h2>
+      <div class="source-list">
+        <div class="source-item">
+          <span class="tag">厚労省</span>
+          <div><a href="https://www.check-roudou.mhlw.go.jp/qa/roudousya/chingin/q4.html" target="_blank" rel="noopener">年俸制の場合には、何時間残業しても割増賃金はもらえないのですか。</a></div>
+        </div>
+        <div class="source-item">
+          <span class="tag">厚労省</span>
+          <div><a href="https://www.check-roudou.mhlw.go.jp/study/roudousya_jikangai.html" target="_blank" rel="noopener">時間外・休日労働と割増賃金</a></div>
+        </div>
+        <div class="source-item">
+          <span class="tag">厚労省</span>
+          <div><a href="https://www.mhlw.go.jp/bunya/roudoukijun/roudoukeiyaku01/dl/08.pdf" target="_blank" rel="noopener">労働契約法のポイント</a></div>
+        </div>
+        <div class="source-item">
+          <span class="tag">JILPT</span>
+          <div><a href="https://www.jil.go.jp/institute/zassi/backnumber/2005/04/pdf/020-022.pdf" target="_blank" rel="noopener">プロスポーツ選手の労働者性</a></div>
+        </div>
+        <div class="source-item">
+          <span class="tag">年金機構</span>
+          <div><a href="https://www.nenkin.go.jp/service/kounen/tekiyo/jigyosho/20150518.html" target="_blank" rel="noopener">適用事業所と被保険者</a></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="office">
+      特定社会保険労務士　土橋　豪
+    </div>
+  </main>
+</body>
+</html>
